@@ -85,14 +85,9 @@ streamlit run app.py
 
 ## Contributing
 
-- Fork the repo, create a feature branch, and open a PR with a clear description.
-- Please run linting and tests before submitting changes.
+- Not available yet
 
 ## License
 
-Specify your license here (e.g., MIT). If you don't want a license, state that the repository is proprietary.
-
----
-
-Generated README for quick onboarding and usage. Update sections (Data, Models, License) with project-specific details as needed.
+No license yet
 
