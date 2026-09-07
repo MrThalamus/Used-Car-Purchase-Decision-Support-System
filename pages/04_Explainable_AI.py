@@ -113,6 +113,15 @@ st.write("")
 
 if st.button("Explain Prediction", use_container_width=True):
 
+    brand_freq = preprocessor.brand_frequency.get(brand, 0.0)
+    model_freq = preprocessor.model_frequency.get(model, 0.0)
+
+    if brand_freq == 0.0 or model_freq == 0.0:
+        st.warning(
+            "The selected brand and/or model was not present in the training "
+            "data, so this explanation may be less reliable."
+        )
+
     with st.spinner("Generating explanation..."):
 
         X = preprocessor.transform(
@@ -303,6 +312,6 @@ Contribution: **{row['SHAP']:.4f}**
 
 • Larger absolute SHAP values indicate a stronger influence on the model's decision.
 
-This explanation is generated using **SHAP (TreeExplainer)** for the trained Random Forest model.
+This explanation is generated using **SHAP (TreeExplainer)** for the trained XGBoost model.
 """
     )

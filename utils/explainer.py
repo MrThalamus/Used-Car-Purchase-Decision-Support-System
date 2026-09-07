@@ -12,6 +12,7 @@ class Explainer:
         base_dir = Path(__file__).resolve().parent.parent
         model_dir = base_dir / "models"
 
+        # Filename is legacy; the file now holds a tuned XGBoost classifier, not a RandomForest.
         self.model = joblib.load(model_dir / "best_rf.pkl")
         self.explainer = shap.TreeExplainer(self.model)
 

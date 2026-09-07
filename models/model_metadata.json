@@ -1,0 +1,41 @@
+{
+  "model_type": "XGBoost (Tuned, RandomizedSearchCV)",
+  "encoding": "frequency-only (brand/model one-hot removed)",
+  "n_features": 15,
+  "feature_names": [
+    "energy_capacity",
+    "kilometers_run",
+    "car_age",
+    "mileage_per_year",
+    "brand_frequency",
+    "model_frequency",
+    "fuel_petrol",
+    "fuel_diesel",
+    "fuel_hybrid",
+    "fuel_electric",
+    "fuel_cng",
+    "fuel_lpg",
+    "fuel_octane",
+    "transmission_Automatic",
+    "transmission_Manual"
+  ],
+  "price_band_labels": [
+    "Low",
+    "Medium",
+    "High",
+    "Luxury"
+  ],
+  "fuel_keywords": [
+    "Petrol",
+    "Diesel",
+    "Hybrid",
+    "Electric",
+    "CNG",
+    "LPG",
+    "Octane"
+  ],
+  "trained_on": "UsedCarInfo.csv",
+  "external_validation": "UsedCar_dataset_External.csv",
+  "external_test_accuracy": 0.8569037656903765,
+  "external_test_mcc": 0.6664767805952284
+}

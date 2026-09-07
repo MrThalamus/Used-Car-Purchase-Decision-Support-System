@@ -1,0 +1,3 @@
+# Standalone document-conversion environment. Install with:
+# py -m pip install -r requirements-markitdown.txt
+markitdown[all]==0.1.7

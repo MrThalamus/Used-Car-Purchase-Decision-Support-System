@@ -87,24 +87,6 @@ class Preprocessor:
             data.loc[0, fuel_column] = 1.0
 
         # -------------------------
-        # Brand Encoding
-        # -------------------------
-
-        brand_column = f"brand_{brand}"
-
-        if brand_column in data.columns:
-            data.loc[0, brand_column] = 1.0
-
-        # -------------------------
-        # Model Encoding
-        # -------------------------
-
-        model_column = f"model_{model}"
-
-        if model_column in data.columns:
-            data.loc[0, model_column] = 1.0
-
-        # -------------------------
         # Transmission Encoding
         # -------------------------
 
@@ -113,8 +95,8 @@ class Preprocessor:
         if transmission_column in data.columns:
             data.loc[0, transmission_column] = 1.0
 
-        # Keep correct feature order
-        data = data[self.feature_names]
+        # Safety net: enforce exact column set/order expected by the model
+        data = data.reindex(columns=self.feature_names, fill_value=0.0)
 
         # Scale ONLY the first 13 columns
         data.iloc[:, :13] = self.scaler.transform(data.iloc[:, :13])

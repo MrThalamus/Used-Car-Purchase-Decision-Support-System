@@ -36,9 +36,11 @@ st.markdown(
 st.header("Model & Explainability")
 st.markdown(
     """
-    The predictive model is a Random Forest classifier (serialized under models/best_rf.pkl). Feature preprocessing
-    (frequency encoding, one-hot encoding for categorical features, and scaling) is handled by the Preprocessor
-    utility. SHAP (TreeExplainer) is used to produce per-sample explanations shown on the Explainable AI page.
+    The predictive model is a tuned XGBoost classifier (serialized under models/best_rf.pkl — the filename is
+    legacy from an earlier Random Forest version). Brand and model are represented by their frequency in the
+    training data rather than one-hot columns; the Preprocessor utility handles this frequency encoding along
+    with scaling of the numeric features. SHAP (TreeExplainer) is used to produce per-sample explanations shown
+    on the Explainable AI page.
     """
 )
 

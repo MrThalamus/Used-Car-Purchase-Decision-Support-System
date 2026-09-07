@@ -122,6 +122,15 @@ if st.button(
 
     try:
 
+        brand_freq = preprocessor.brand_frequency.get(brand, 0.0)
+        model_freq = preprocessor.model_frequency.get(model, 0.0)
+
+        if brand_freq == 0.0 or model_freq == 0.0:
+            st.warning(
+                "The selected brand and/or model was not present in the training "
+                "data, so the prediction for this vehicle may be less reliable."
+            )
+
         X = preprocessor.transform(
             brand=brand,
             model=model,

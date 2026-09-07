@@ -71,10 +71,9 @@ Machine Learning model trained on real-world used car listings.
 The system performs:
 
 - Feature Engineering
-- Frequency Encoding
-- One-Hot Encoding
+- Frequency Encoding (brand & model)
 - Feature Scaling
-- Random Forest Classification
+- XGBoost Classification
 - Explainable AI (SHAP)
 
 Use the navigation menu on the left to explore the application.
@@ -89,10 +88,10 @@ st.write("")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.metric("Model", "Random Forest")
+    st.metric("Model", "XGBoost")
 
 with col2:
-    st.metric("Accuracy", "80.87%")
+    st.metric("Accuracy", "85.69%")
 
 with col3:
     st.metric("Classes", "4")
@@ -105,10 +104,9 @@ st.write(
 """
 The system was developed using:
 
-- Random Forest Classifier
+- XGBoost Classifier (tuned via RandomizedSearchCV)
 - Feature Engineering
-- Frequency Encoding
-- One-Hot Encoding
+- Frequency Encoding (brand & model)
 - Standard Scaling
 - Explainable AI (SHAP)
 """
@@ -163,7 +161,7 @@ Encoding & Scaling
 
 ->
 
-Random Forest Model
+XGBoost Model
 
 ->
 

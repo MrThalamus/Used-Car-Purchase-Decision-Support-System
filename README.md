@@ -32,6 +32,33 @@ streamlit run app.py
 
 3. Open the shown local URL (usually `http://localhost:8501`).
 
+## Convert local documents to Markdown
+
+Microsoft MarkItDown is installed in a separate local environment at
+`C:\Users\USER\.markitdown-venv`, so it does not interfere with the Streamlit app's
+packages. It supports PDF, Word, PowerPoint, Excel (`.xlsx` and `.xls`), HTML,
+images, audio, CSV, JSON, XML, ZIP, EPUB, Outlook messages, and more.
+
+From this project folder in PowerShell:
+
+```powershell
+.\convert-to-markdown.ps1 "C:\Documents\report.pdf"
+.\convert-to-markdown.ps1 "C:\Documents\workbook.xlsx" -OutputFile "C:\Documents\workbook.md"
+.\convert-to-markdown.ps1 "C:\Documents\slides.pptx" -UsePlugins
+```
+
+If you omit `-OutputFile`, the wrapper creates a sibling file with `.md` appended
+(for example, `report.pdf.md`). Use `-UsePlugins` only for installed third-party
+MarkItDown plugins; built-in format support works without it.
+
+For the native command instead, run:
+
+```powershell
+C:\Users\USER\.markitdown-venv\Scripts\markitdown.exe "C:\Documents\report.pdf" -o "C:\Documents\report.md"
+```
+
+Only convert files you trust: MarkItDown reads files with your current user permissions.
+
 ## Project Structure
 
 - `requirements.txt` — Python dependencies
@@ -63,7 +90,9 @@ streamlit run app.py
 
 ## Models & Training
 
-- Trained models (if provided) live in the `models/` folder. Typical formats: `.pkl`, `.joblib`, or exported scikit-learn pipelines.
+- The deployed classifier is a tuned XGBoost model (`XGBClassifier`, tuned via `RandomizedSearchCV`), serialized under `models/best_rf.pkl` — the filename is legacy from an earlier Random Forest version.
+- Brand and model are encoded as frequency features (`brand_frequency`, `model_frequency`, looked up from `models/brand_frequency.pkl` / `models/model_frequency.pkl`) rather than one-hot columns; unseen brands/models fall back to `0.0`.
+- `models/feature_names.pkl` and `models/model_metadata.json` are the source of truth for the exact feature set/order the model expects.
 - `predictor.py` wraps the model and preprocessing pipeline to produce price predictions from raw inputs.
 - To retrain, follow your existing training notebook or implement a new training script; save the fitted pipeline to `models/`.
 

@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # ------------------------
 
 def load_model():
+    # Filename is legacy; the file now holds a tuned XGBoost classifier, not a RandomForest.
     return joblib.load(ROOT / "models" / "best_rf.pkl")
 
 
